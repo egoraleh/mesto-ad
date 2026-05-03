@@ -95,7 +95,7 @@ const handlePreviewPicture = ({ name, link }) => {
 
 const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
-  const submitButton = profileForm.querySelector(".popup__button");
+  const submitButton = evt.submitter;
   renderLoading(submitButton, true, "Сохранить");
 
   setUserInfo({
@@ -117,14 +117,13 @@ const handleProfileFormSubmit = (evt) => {
 
 const handleAvatarFormSubmit = (evt) => {
   evt.preventDefault();
-  const submitButton = avatarForm.querySelector(".popup__button");
+  const submitButton = evt.submitter;
   renderLoading(submitButton, true, "Сохранить");
 
   setUserAvatar(avatarInput.value)
     .then((userData) => {
       profileAvatar.style.backgroundImage = `url(${userData.avatar})`;
       avatarForm.reset();
-      clearValidation(avatarForm, validationSettings);
       closeModalWindow(avatarFormModalWindow);
     })
     .catch((err) => {
@@ -137,7 +136,7 @@ const handleAvatarFormSubmit = (evt) => {
 
 const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
-  const submitButton = cardForm.querySelector(".popup__button");
+  const submitButton = evt.submitter;
   renderLoading(submitButton, true, "Создать");
 
   addNewCard({
@@ -158,7 +157,6 @@ const handleCardFormSubmit = (evt) => {
       );
 
       cardForm.reset();
-      clearValidation(cardForm, validationSettings);
       closeModalWindow(cardFormModalWindow);
     })
     .catch((err) => {
@@ -177,7 +175,7 @@ const handleDeleteClick = (cardElement, cardId) => {
 
 const handleRemoveCardFormSubmit = (evt) => {
   evt.preventDefault();
-  const submitButton = removeCardForm.querySelector(".popup__button");
+  const submitButton = evt.submitter;
   renderLoading(submitButton, true, "Да");
 
   deleteCardFromServer(cardToDelete)

@@ -1,1 +1,1 @@
-https://github.com/egoraleh/mesto-ad
+https://egoraleh.github.io/mesto-ad/
